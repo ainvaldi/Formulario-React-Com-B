@@ -17,6 +17,13 @@ const Tarjeta = () =>{
     const[color, setColor] = useState('gray')
     const toast = useRef(null)
 
+    const guardarEnLocalStorage = (persona) =>{
+        const existente = localStorage.getItem('personas')
+        const lista = existente ? JSON.parse(existente):[]
+        lista.push(persona)
+        localStorage.setItem('personas', JSON.stringify(lista))   
+    }
+
     const confirmarFormulario = ()=>{
         Swal.fire({
             title:'¿Desea confirmar los datos?',
@@ -27,6 +34,13 @@ const Tarjeta = () =>{
             cancelButtonText:'Cancelar'
         }).then((result)=>{
             if(result.isConfirmed){
+
+                guardarEnLocalStorage({
+                    nombre: nombre || 'Sin nombre',
+                    color: color || 'Sin color',
+                    createdAt: new Date()
+                })
+
                 toast.current?.show({
                     severity:'success',
                     summary:'Guardado',
