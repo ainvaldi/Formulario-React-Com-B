@@ -1,11 +1,16 @@
-import { useNavigate } from "react-router-dom";
-import { Button } from "primereact/button";
+import { Fragment } from "react"
+import { useNavigate } from "react-router-dom"
+import { Button } from "primereact/button"
 
 const Home = () =>{
-    const navigate = useNavigate()
 
+    const navigate = useNavigate()
     return(
-        <Button label="Ir al formulario" onClick={()=> navigate('/tarjeta')}/>
+        <Fragment>
+            <h2>Mi Home</h2>
+            <Button onClick={() => navigate('/tarjeta')} label='Ir al formulario' ></Button>
+            <Button onClick={() => navigate('/personas')} label='Ver total de personas' ></Button>
+        </Fragment>
     )
 }
 
